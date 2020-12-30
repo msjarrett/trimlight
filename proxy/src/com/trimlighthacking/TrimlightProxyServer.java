@@ -1,4 +1,4 @@
-package com.trimlighthacking;// See https://resources.oreilly.com/examples/9781565923713/blob/master/ProxyServer.java
+package com.trimlighthacking;  // See https://resources.oreilly.com/examples/9781565923713/blob/master/ProxyServer.java
 // This example is from _Java Examples in a Nutshell_. (http://www.oreilly.com)
 // Copyright (c) 1997 by David Flanagan
 // This example is provided WITHOUT ANY WARRANTY either expressed or implied.

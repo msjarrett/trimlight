@@ -1,3 +1,4 @@
+// See http://technojeeves.com/index.php/48-server-by-david-flanagan
 package com.trimlighthacking;
 
 import java.io.*;
