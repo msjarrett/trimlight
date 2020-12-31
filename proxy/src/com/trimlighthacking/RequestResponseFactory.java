@@ -3,6 +3,13 @@ package com.trimlighthacking;
 import java.util.Arrays;
 
 public class RequestResponseFactory {
+    private static String ExpectedResponse;
+    private static final Object LOCK = new Object() {};
+    private static void setExpectedResponse(String expectedResponse) {
+        synchronized (LOCK) {
+            ExpectedResponse = expectedResponse;
+        }
+    }
     public static TrimlightInterpretable Create(byte[] buffer, int bytes_read, boolean toServer) {
         if(buffer.length < 3) {
             throw new MalformedBufferException("Buffer should be more than three characters long", buffer);
@@ -19,14 +26,25 @@ public class RequestResponseFactory {
         if(toServer) {
             switch (code & 0xFF) {
                 case 0x0C:
+                    setExpectedResponse("ConnectionResponse");
                     return new ConnectionRequest(bufferSlice);
                 default:
+                    setExpectedResponse(null);
                     return new UnclassifiedRequest(bufferSlice);
             }
         } else {
-            switch (code) {
-                default:
-                    return new UnclassifiedResponse(bufferSlice);
+            try {
+                switch (ExpectedResponse) {
+                    case "ConnectionResponse":
+                        return new ConnectionResponse(bufferSlice);
+                }
+                switch (code) {
+                    default:
+                        return new UnclassifiedResponse(bufferSlice);
+                }
+            }
+            finally {
+                setExpectedResponse(null);
             }
         }
     }
