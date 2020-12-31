@@ -11,7 +11,7 @@ public class Main {
 
         Server s = new Server(System.out, 12); // log stream, max connections
         try {
-            s.addService(new TrimlightProxyServer("192.168.254.51", 22), 20022);
+            s.addService(new TrimlightProxyServer("192.168.254.50", 8189), 8189);
         } catch (IOException e) {
             e.printStackTrace();
         }
