@@ -7,6 +7,7 @@ package com.trimlighthacking;  // See https://resources.oreilly.com/examples/978
 
 import java.io.*;
 import java.net.*;
+import java.util.Date;
 
 /**
  * This class uses the Server class to provide a multi-threaded server 
@@ -66,6 +67,10 @@ import java.net.*;
             this.port = port;
         }
 
+        public void log(String s) {
+            System.out.printf("[%tc] %s\n", new Date(), s);
+        }
+
         /** The server invokes this method when a client connects. */
         public void serve(InputStream in, OutputStream out) {
             // These are some sockets we'll use.  They are final so they can be used
@@ -105,6 +110,8 @@ import java.net.*;
                     int bytes_read;
                     try {
                         while((bytes_read = from_client.read(buffer)) != -1) {
+                            String formattedByteArray = ByteArrayFormatter.format(buffer, bytes_read);
+                            log(String.format("client->server %s", formattedByteArray));
                             to_server.write(buffer, 0, bytes_read);
                             to_server.flush();
                         }
@@ -125,6 +132,8 @@ import java.net.*;
                     int bytes_read;
                     try {
                         while((bytes_read = from_server.read(buffer)) != -1) {
+                            String formattedByteArray = ByteArrayFormatter.format(buffer, bytes_read);
+                            log(String.format("server->client %s", formattedByteArray));
                             to_client.write(buffer, 0, bytes_read);
                             to_client.flush();
                         }

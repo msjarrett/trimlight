@@ -7,8 +7,7 @@ import java.io.PrintWriter;
 public class Main {
 
     public static void main(String[] args) {
-	// write your code here
-        System.out.println("Hello world");
+        System.out.println("TrimLight Proxy v0.000001");
 
         Server s = new Server(System.out, 12); // log stream, max connections
         try {
