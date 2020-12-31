@@ -28,14 +28,17 @@ public class RequestResponseFactory {
         if (toServer) {
             setPreviousRequestCode(code);
             switch (code & 0xFF) {
+                case 0x02:
+                    return new PatternLibraryQueryRequest(bufferSlice);
                 case 0x0C:
-
                     return new ConnectionRequest(bufferSlice);
                 default:
                     return new UnclassifiedRequest(bufferSlice);
             }
         } else {
             switch (previousRequestCode & 0xFF) {
+                case 0x02:
+                    return new PatternLibraryQueryResponse(bufferSlice);
                 case 0x0C:
                     return new ConnectionResponse(bufferSlice);
             }
