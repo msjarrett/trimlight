@@ -30,6 +30,8 @@ public class RequestResponseFactory {
             switch (code & 0xFF) {
                 case 0x02:
                     return new PatternLibraryQueryRequest(bufferSlice);
+                case 0x0A:
+                    return new BuiltInPatternSetRequest(bufferSlice);
                 case 0x0C:
                     return new ConnectionRequest(bufferSlice);
                 default:
