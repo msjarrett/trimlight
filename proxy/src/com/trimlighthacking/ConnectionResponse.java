@@ -21,7 +21,7 @@ public class ConnectionResponse extends Response {
         this.HostName = new String(hostname);
         this.fixedUnknown2 = buffer[hostnameEnd] & 0xff;
         this.fixedUnknown3 = buffer[hostnameEnd + 1] & 0xff;
-        this.PixelCount = ((buffer[hostnameEnd + 2] & 0xff) << 8 +(buffer[hostnameEnd + 3] & 0xff));
+        this.PixelCount = (((buffer[hostnameEnd + 2] & 0xff) << 8) + (buffer[hostnameEnd + 3] & 0xff));
         this.fixedUnknown4 = buffer[hostnameEnd + 4] & 0xff;
         this.fixedUnknown5 = buffer[hostnameEnd + 5] & 0xff;
         // Reduce to interesting slice
@@ -32,6 +32,6 @@ public class ConnectionResponse extends Response {
     public int PixelCount;
     @Override
     public String toString() {
-        return String.format("%s <Connection Response> HostName: %s Unknowns: (Fixed: %02X %02X %02X %02X %02X Var: %02X)", this.LogPrefix, this.HostName, this.PixelCount, fixedUnknown1, fixedUnknown2, fixedUnknown3, fixedUnknown4, fixedUnknown5, varUnknown1);
+        return String.format("%s <Connection Response> HostName: %s PixelCount: %d Unknowns: (Fixed: %02X %02X %02X %02X %02X Var: %02X)", this.LogPrefix, this.HostName, this.PixelCount, fixedUnknown1, fixedUnknown2, fixedUnknown3, fixedUnknown4, fixedUnknown5, varUnknown1);
     }
 }
