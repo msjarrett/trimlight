@@ -18,6 +18,8 @@ public class RequestResponseFactory {
 
         if(toServer) {
             switch (code & 0xFF) {
+                case 0x0C:
+                    return new ConnectionRequest(bufferSlice);
                 default:
                     return new UnclassifiedRequest(bufferSlice);
             }
