@@ -132,7 +132,7 @@ import java.util.Date;
                     int bytes_read;
                     try {
                         while((bytes_read = from_server.read(buffer)) != -1) {
-                            TrimlightInterpretable response = RequestResponseFactory.Create(buffer, bytes_read, true);
+                            TrimlightInterpretable response = RequestResponseFactory.Create(buffer, bytes_read, false);
                             log(response.toString());
 
                             to_client.write(buffer, 0, bytes_read);
