@@ -3,6 +3,7 @@ package com.trimlighthacking;
 public class ByteArrayFormatter {
     public static String format(byte[] bytes, int count) {
         StringBuilder out = new StringBuilder(bytes.length * 3);
+        out.append("\n                                             ");
         if(count > bytes.length) {
             throw new IllegalArgumentException(String.format("Count %d is greater than buffer length %d", count, bytes.length));
         }
@@ -18,7 +19,7 @@ public class ByteArrayFormatter {
             }
 
         }
-        out.append("\n                                                             ");
+        out.append("\n                                             ");
         for(int i = 0; i < count; i++) {
             out.append(String.format("%02X ", bytes[i]));
         }
