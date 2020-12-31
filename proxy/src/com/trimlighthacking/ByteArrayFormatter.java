@@ -18,7 +18,7 @@ public class ByteArrayFormatter {
             }
 
         }
-        out.append("\n                                              ");
+        out.append("\n                                                            ");
         for(int i = 0; i < count; i++) {
             out.append(String.format("%02X ", bytes[i]));
         }
