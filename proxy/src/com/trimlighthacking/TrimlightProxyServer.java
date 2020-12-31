@@ -110,8 +110,8 @@ import java.util.Date;
                     int bytes_read;
                     try {
                         while((bytes_read = from_client.read(buffer)) != -1) {
-                            String formattedByteArray = ByteArrayFormatter.format(buffer, bytes_read);
-                            log(String.format("client->server %s", formattedByteArray));
+                            TrimlightInterpretable request = RequestResponseFactory.Create(buffer, bytes_read, true);
+                            log(request.toString());
                             to_server.write(buffer, 0, bytes_read);
                             to_server.flush();
                         }
@@ -132,8 +132,9 @@ import java.util.Date;
                     int bytes_read;
                     try {
                         while((bytes_read = from_server.read(buffer)) != -1) {
-                            String formattedByteArray = ByteArrayFormatter.format(buffer, bytes_read);
-                            log(String.format("server->client %s", formattedByteArray));
+                            TrimlightInterpretable response = RequestResponseFactory.Create(buffer, bytes_read, true);
+                            log(response.toString());
+
                             to_client.write(buffer, 0, bytes_read);
                             to_client.flush();
                         }
