@@ -25,17 +25,19 @@ commands that are querying information.
 * Connect
     * Request
         * `0c` - Command.
-        * `00 0a` - ?? fixed.
-        * `eb 2b 76 14 0c 1b 07 15 35 04` - ?? varying with each connection.
-          Is `0a` an array length for this?
+        * `00 0a` - ?? fixed. [Confirmed same across two devices -- App version?]
+        * `eb 2b 76` ?? varying.
+        * `14 0c 1b 07 15 35 04` - Current time: Year Month Day Day-of-week? Hour Minute Second
+          
     * Response
         * `c9` - ?? varying.
         * `01` - ?? varying 00 or 01.
-        * `09 54 72 69 6d 6c 69 67 68 74` - "Trimlight" (assuming 09 is a string length).
+        * `09` - String length
+        * `54 72 69 6d 6c 69 67 68 74` - "Trimlight" 
           Controller name.
-        * `00 00` - ?? fixed.
-        * `02 58` - Pixel count? **TODO: Confirm this with a different system.*
-        * `03 00` - ?? fixed.
+        * `00 00` - ?? fixed. [RGB order?]
+        * `02 58` - Pixel count 
+        * `03 00` - ?? fixed. [IC?]
 * Controller mode change
     * Request
         * `0d` - Command.
