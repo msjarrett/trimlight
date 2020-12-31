@@ -5,11 +5,11 @@ import java.util.Calendar;
 import java.util.GregorianCalendar;
 
 public class ConnectionRequest extends Request {
-    private final int fixed_unknown1;
-    private final int fixed_unknown2;
-    private final int var_unknown3;
-    private final int var_unknown4;
-    private final int var_unknown5;
+    private final int fixedUnknown1;
+    private final int fixedUnknown2;
+    private final int varUnknown1;
+    private final int varUnknown2;
+    private final int varUnknown3;
 
     public ConnectionRequest(byte[] buffer) {
         // We don't know what indices 2-6 are used for yet.
@@ -20,11 +20,11 @@ public class ConnectionRequest extends Request {
         int minute = buffer[12] & 0xff;
         int second = buffer[13] & 0xff;
 
-        this.fixed_unknown1 = buffer[2] & 0xff;
-        this.fixed_unknown2 = buffer[3] & 0xff;
-        this.var_unknown3 = buffer[4] & 0xff;
-        this.var_unknown4 = buffer[5] & 0xff;
-        this.var_unknown5 = buffer[6] & 0xff;
+        this.fixedUnknown1 = buffer[2] & 0xff;
+        this.fixedUnknown2 = buffer[3] & 0xff;
+        this.varUnknown1 = buffer[4] & 0xff;
+        this.varUnknown2 = buffer[5] & 0xff;
+        this.varUnknown3 = buffer[6] & 0xff;
 
         Calendar calendar = new GregorianCalendar();
 
@@ -44,6 +44,6 @@ public class ConnectionRequest extends Request {
 
     @Override
     public String toString() {
-        return String.format("%s <Connection Request> Connection Started: %s Unknowns: (Fixed: %02X %02X Var: %02X %02X %02X)", this.LogPrefix, this.ConnectionStartDate.getTime().toString(), fixed_unknown1, fixed_unknown2, var_unknown3, var_unknown4, var_unknown5);
+        return String.format("%s <Connection Request> Connection Started: %s Unknowns: (Fixed: %02X %02X Var: %02X %02X %02X)", this.LogPrefix, this.ConnectionStartDate.getTime().toString(), fixedUnknown1, fixedUnknown2, varUnknown1, varUnknown2, varUnknown3);
     }
 }
