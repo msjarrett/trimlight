@@ -28,6 +28,8 @@ public class RequestResponseFactory {
         if (toServer) {
             setPreviousRequestCode(code);
             switch (code & 0xFF) {
+                case 0x16:
+                    return new PatternEntryRequest(bufferSlice);
                 case 0x02:
                     return new PatternLibraryQueryRequest(bufferSlice);
                 case 0x0A:
@@ -39,12 +41,12 @@ public class RequestResponseFactory {
             }
         } else {
             switch (previousRequestCode & 0xFF) {
+                case 0x16:
+                    return new PatternEntryResponse(bufferSlice);
                 case 0x02:
                     return new PatternLibraryQueryResponse(bufferSlice);
                 case 0x0C:
                     return new ConnectionResponse(bufferSlice);
-            }
-            switch (code) {
                 default:
                     return new UnclassifiedResponse(bufferSlice);
             }
