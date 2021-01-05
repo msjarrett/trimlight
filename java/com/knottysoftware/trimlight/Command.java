@@ -20,5 +20,10 @@ public class Command {
     return type;
   }
 
+  @Override
+  public String toString() {
+    return String.format("Command %s", getType().toString());
+  }
+
   private Type type;
 }

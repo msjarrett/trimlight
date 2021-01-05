@@ -7,15 +7,15 @@ import java.net.ProtocolException;
 
 public class ServerMessageParser {
   public static Command parseCommand(byte[] data) throws ProtocolException {
-    if (data.length < 3 || data[0] != Protocol.MAGIC_START ||
-        data[data.length - 1] != Protocol.MAGIC_END) {
-      throw new ProtocolException("Invalid message");
+    if (data.length < 3 || data[0] != (byte)Protocol.MAGIC_START ||
+        data[data.length - 1] != (byte)Protocol.MAGIC_END) {
+      throw new ProtocolException("Invalid message: " + Protocol.getHexDump(data));
     }
 
     Command command = null;
     Command.Type type = getCommandTypeForByte(data[1]);
     if (type == Command.Type.UNKNOWN) {
-      throw new ProtocolException("Unknown command");
+      throw new ProtocolException(String.format("Unknown command: %02x", data[1]));
     }
 
     command = new Command(type);
@@ -28,8 +28,12 @@ public class ServerMessageParser {
 
   public Command readNextCommand() throws ProtocolException, IOException {
     int b = is.read();
+    if (b == -1) {
+      // Not a real byte. This is end-of-stream.
+      return null;
+    }
     if (b != Protocol.MAGIC_START) {
-      throw new ProtocolException("Stream not starting a command");
+      throw new ProtocolException(String.format("Stream not starting a command: %02x", b));
     }
     ByteArrayOutputStream bs = new ByteArrayOutputStream();
     bs.write(b);
