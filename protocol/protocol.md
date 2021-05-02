@@ -48,22 +48,30 @@ commands that are querying information.
         * `00 00` - ?? fixed.
     * Response
         * `0c 01 02 03 04 05 06 07 08 09 0a 0b 0c` - ?? fixed. Potentially pattern library IDs.
-        `* 00 01 0a 01 10 1e 17 01 00 01 00 01 00 01 01` - ?? fixed.
+        * `00 01 0a 01 10 1e 17 01 00 01 00 01 00 01 01` - ?? fixed.
 * Query pattern library entry
     * Request
         * `16` - Command.
         * `00 01` - ?? fixed.
         * `01` - Pattern library ID.
-    * Response
+    * Response (success)
         * `01` - Pattern library ID.
         * `4e 45 57 20 59 45 41 52 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00` -
           "NEW YEAR". Pattern library name. The app limits this to "< 25 characters",
-          so this may be a fixed legnth string. Existing patterns are padded with `00`,
-          while user-added patterns are padded with `ff`.
-         * `02 00` - ??
-        * `7f` - Speed.
-        * `ff` - Brightness.
-        * `01 00 00 00 00 00 00 dd 64 14 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00`
+          so this may be a fixed length string. Patterns are padded with either `00`
+          or `ff`.
+        * `02` - ?? fixed.
+        * `00` - Animation: `00` = Static, `01` = Chase forward, `02` = Chase
+          backward, `03` = Middle to out, `04` = Out to middle, `05` = Strobe, `06` =
+          Fade, `07` = Comet forward, `08` = Comet backward, `09` = Wave forward,
+          `0a` = Wave backward, `0b` = Solid fade.
+        * `7f` - Speed (0-255).
+        * `ff` - Brightness (0-255).
+        * `01 00 00 00 00 00 00` - Seven color repetition counts (0-30).
+        * `dd 64 14  00 00 00  00 00 00  00 00 00  00 00 00  00 00 00  00 00 00` - Seven
+          3-byte RGB settings (red, green, blue, each 0-255).
+    * Response (error)
+        * 58 `ff` bytes are returned if Pattern library ID is not valid.
 * Save to pattern library??
     * Request
         * `06` - Command.
