@@ -117,7 +117,7 @@ commands that are querying information.
             * `02` Chase Backward.
         * `7f 7f 01 01 01 00 00 00 00 ff 00 00 00 ff 00 00 00 ff 00 00 00 00 00 00 00 00 00 00 00 00` - ??.
     * Response: none.        
-* Display preset pattern.
+* Display one of 180 preset patterns (the ones available on the first page in the app).
     * Request
         * `0a` - Command.
         * `00 03` - command length in number bytes.
