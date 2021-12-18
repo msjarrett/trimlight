@@ -130,3 +130,9 @@ commands that are querying information.
         * `7f` - Speed.
         * `ff` - Brightness.
     * Response: none.
+* Delete pattern
+    * Request
+        * `04` - Command.
+        * `00 01` - command length in number bytes.
+        * `0b` - Pattern library id to update
+    * Response: none.
