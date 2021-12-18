@@ -107,15 +107,19 @@ commands that are querying information.
         * `dd 64 14  00 00 00  00 00 00  00 00 00  00 00 00  00 00 00  00 00 00` - Seven
           3-byte RGB settings (red, green, blue, each 0-255).
     * Response: none.
-* Check custom pattern
+* Preview custom pattern (used to preview changes while in the app)
     * Request
         * `13` - Command.
-        * `00 1f` - ?? (probably command length in bytes).
-        * `01` - potentially pattern?
-            * `00` Static.
-            * `01` Chase Forward.
-            * `02` Chase Backward.
-        * `7f 7f 01 01 01 00 00 00 00 ff 00 00 00 ff 00 00 00 ff 00 00 00 00 00 00 00 00 00 00 00 00` - ??.
+        * `00 1f` - command length in number bytes.
+        * `00` - Animation: `00` = Static, `01` = Chase forward, `02` = Chase
+          backward, `03` = Middle to out, `04` = Out to middle, `05` = Strobe, `06` =
+          Fade, `07` = Comet forward, `08` = Comet backward, `09` = Wave forward,
+          `0a` = Wave backward, `0b` = Solid fade.
+        * `7f` - Speed (0-255).
+        * `ff` - Brightness (0-255).
+        * `01 00 00 00 00 00 00` - Seven color repetition counts (0-30).
+        * `dd 64 14  00 00 00  00 00 00  00 00 00  00 00 00  00 00 00  00 00 00` - Seven
+          3-byte RGB settings (red, green, blue, each 0-255).
     * Response: none.        
 * Display one of 180 preset patterns (the ones available on the first page in the app).
     * Request
