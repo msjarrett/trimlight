@@ -29,8 +29,10 @@ commands that are querying information.
         * `eb 2b 76` - random bytes that are only guaranteed to not be 5a or a5 (start and end values).
         * `14 0c 1b 07 15 35 04` - year, month, day, day of week, hour, minute, second.
     * Response
-        * `c9` - ?? varying.
-        * `00 09` - length of controller name.
+        * `c9` - calculated verification by taking the three random bytes in the connect command
+          and performing the following operation in java `(bytes)(b1 << 5 | b2 >> 3 & 31 & b3)`
+        * `01` - ?? varying.
+        * `09` - length of controller name.
         * `54 72 69 6d 6c 69 67 68 74` - "Trimlight" or user specified "Controller name".
         * `00 00` - padding.
         * `02 58` - Pixel count.
