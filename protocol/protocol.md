@@ -29,19 +29,19 @@ commands that are querying information.
         * `eb 2b 76` - random bytes that are only guaranteed to not be 5a or a5 (start and end values).
         * `14 0c 1b 07 15 35 04` - year, month, day, day of week, hour, minute, second.
     * Response
-        * `c9` - calculated verification by taking the three random bytes in the connect command
-          and performing the following operation in java `(bytes)(b1 << 5 | b2 >> 3 & 0x1F & b3)`
+        * `c9` - Calculated by taking the three random bytes in the connect command and performing the
+          following operation in java `(bytes)(b1 << 5 | b2 >> 3 & 0x1F & b3)`
         * `01` - ?? varying.
-        * `09` - length of controller name.
+        * `09` - Length of controller name.
         * `54 72 69 6d 6c 69 67 68 74` - "Trimlight" or user specified "Controller name".
-        * `00 00` - padding.
+        * `00 00` - Padding.
         * `02 58` - Pixel count.
         * `03 00` - ?? fixed.
 * Controller mode change
     * Request
         * `0d` - Command.
-        * `00 01` - command length in number of bytes.
-        * `01` - mode. `00` for timer, `01` for manual.
+        * `00 01` - Command length in number of bytes.
+        * `01` - Mode. `00` for timer, `01` for manual.
 * Pattern library query root?
     * Occurs when tapping "Enter" in app.
     * Request
@@ -76,10 +76,10 @@ commands that are querying information.
 * Create new pattern
     * Request
         * `06` - Command.
-        * `00 3a` - command length in bytes
-        * `0e` - Pattern library id to update
+        * `00 3a` - Command length in bytes
+        * `0e` - Pattern library id to create.
         * `77 69 72 65 73 68 61 72 6b 69 6e 67 ff ff ff ff ff ff ff ff ff ff ff ff` -
-          "wiresharking". Pattern library name (< 25 characters)
+          "wiresharking". Pattern library name (< 25 characters).
         * `00 02` - ?? fixed.
         * `00` - Animation: `00` = Static, `01` = Chase forward, `02` = Chase
           backward, `03` = Middle to out, `04` = Out to middle, `05` = Strobe, `06` =
@@ -94,10 +94,10 @@ commands that are querying information.
 * Update existing pattern
     * Request
         * `05` - Command.
-        * `00 3a` - command length in bytes
-        * `0e` - Pattern library id to update
+        * `00 3a` - Command length in bytes.
+        * `0e` - Pattern library id to update.
         * `77 69 72 65 73 68 61 72 6b 69 6e 67 ff ff ff ff ff ff ff ff ff ff ff ff` -
-          "wiresharking". Pattern library name (< 25 characters)
+          "wiresharking". Pattern library name (< 25 characters).
         * `00 02` - ?? fixed.
         * `00` - Animation: `00` = Static, `01` = Chase forward, `02` = Chase
           backward, `03` = Middle to out, `04` = Out to middle, `05` = Strobe, `06` =
@@ -112,7 +112,7 @@ commands that are querying information.
 * Preview custom pattern (used to preview changes while in the app)
     * Request
         * `13` - Command.
-        * `00 1f` - command length in number bytes.
+        * `00 1f` - Command length in number bytes.
         * `00` - Animation: `00` = Static, `01` = Chase forward, `02` = Chase
           backward, `03` = Middle to out, `04` = Out to middle, `05` = Strobe, `06` =
           Fade, `07` = Comet forward, `08` = Comet backward, `09` = Wave forward,
@@ -126,7 +126,7 @@ commands that are querying information.
 * Display one of 180 preset patterns (the ones available on the first page in the app).
     * Request
         * `0a` - Command.
-        * `00 03` - command length in number bytes.
+        * `00 03` - Command length in number bytes.
         * `01` - Manual pattern ID - correspond to the numbers shown on the
           first tab of the app. If adjusting speed or brightness, set to `fa`.
         * `7f` - Speed.
@@ -135,6 +135,6 @@ commands that are querying information.
 * Delete pattern
     * Request
         * `04` - Command.
-        * `00 01` - command length in number bytes.
+        * `00 01` - Command length in number bytes.
         * `0b` - Pattern library id to update
     * Response: none.
