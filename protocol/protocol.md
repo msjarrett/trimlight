@@ -77,7 +77,7 @@ commands that are querying information.
     * Request
         * `06` - Command.
         * `00 3a` - command length in bytes
-        * `0e` - Pattern library ID?? How do we determine this??
+        * `0e` - Pattern library id to update
         * `77 69 72 65 73 68 61 72 6b 69 6e 67 ff ff ff ff ff ff ff ff ff ff ff ff` -
           "wiresharking". Pattern library name (< 25 characters)
         * `00 02` - ?? fixed.
