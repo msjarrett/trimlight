@@ -30,7 +30,7 @@ commands that are querying information.
         * `14 0c 1b 07 15 35 04` - year, month, day, day of week, hour, minute, second.
     * Response
         * `c9` - calculated verification by taking the three random bytes in the connect command
-          and performing the following operation in java `(bytes)(b1 << 5 | b2 >> 3 & 31 & b3)`
+          and performing the following operation in java `(bytes)(b1 << 5 | b2 >> 3 & 0x1F & b3)`
         * `01` - ?? varying.
         * `09` - length of controller name.
         * `54 72 69 6d 6c 69 67 68 74` - "Trimlight" or user specified "Controller name".
